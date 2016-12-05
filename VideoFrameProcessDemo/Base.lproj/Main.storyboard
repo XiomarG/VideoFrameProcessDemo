@@ -1,7 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11134"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11542"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -653,7 +655,7 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="VideoFrameProcessDemo" customModuleProvider="target"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="75" y="0.0"/>
@@ -679,15 +681,139 @@
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="VideoFrameProcessDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <rect key="frame" x="0.0" y="0.0" width="900" height="410"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lBQ-i9-Azc">
+                                <rect key="frame" x="0.0" y="100" width="450" height="310"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="450" id="NqP-gC-PCu"/>
+                                    <constraint firstAttribute="height" constant="310" id="gSQ-HD-axj"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="placeholder" id="j40-FK-HSe"/>
+                            </imageView>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WWT-bT-WoC">
+                                <rect key="frame" x="450" y="100" width="450" height="310"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="placeholder" id="FDf-kU-AgM"/>
+                            </imageView>
+                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Thl-3v-mPB">
+                                <rect key="frame" x="14" y="58" width="227" height="26"/>
+                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" arrowPosition="noArrow" selectedItem="zb2-Cm-i6s" id="uvk-oI-kCi">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" id="Pgo-Op-X0R">
+                                        <items>
+                                            <menuItem state="on" id="zb2-Cm-i6s"/>
+                                            <menuItem title="Item 2" id="qLQ-DU-ElS"/>
+                                            <menuItem title="Item 3" id="LeL-aR-A6X"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                                <connections>
+                                    <action selector="cameraSelectionUpdated:" target="XfG-lQ-9wD" id="I2Z-sk-EPj"/>
+                                </connections>
+                            </popUpButton>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rxa-qT-JMl">
+                                <rect key="frame" x="14" y="13" width="108" height="32"/>
+                                <buttonCell key="cell" type="push" title="Camera On" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="A8Y-YQ-v87">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="cameraOn:" target="XfG-lQ-9wD" id="0II-98-lH5"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="meL-Vt-Rxg">
+                                <rect key="frame" x="130" y="13" width="110" height="32"/>
+                                <buttonCell key="cell" type="push" title="Camera Off" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="loE-C8-0JN">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="cameraOff:" target="XfG-lQ-9wD" id="ias-ga-4Uu"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="reo-Da-88c">
+                                <rect key="frame" x="788" y="13" width="98" height="32"/>
+                                <buttonCell key="cell" type="push" title="Video Off" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bYT-kB-JC6">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="videoOff:" target="XfG-lQ-9wD" id="A3M-qd-HEb"/>
+                                </connections>
+                            </button>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LeK-Ng-TsK">
+                                <rect key="frame" x="580" y="61" width="300" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="vNb-Yc-Y8M"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="OIs-uW-GDi">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JET-5E-o9e">
+                                <rect key="frame" x="492" y="64" width="70" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Video Path" id="lnC-4Y-jcv">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nRm-k3-uz0">
+                                <rect key="frame" x="684" y="13" width="96" height="32"/>
+                                <buttonCell key="cell" type="push" title="Video On" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="LHx-8O-HTM">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="videoOn:" target="XfG-lQ-9wD" id="xY9-Ug-9tB"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="lBQ-i9-Azc" secondAttribute="bottom" constant="100" id="5m1-gv-JNA"/>
+                            <constraint firstItem="nRm-k3-uz0" firstAttribute="centerY" secondItem="reo-Da-88c" secondAttribute="centerY" id="8ID-85-iZT"/>
+                            <constraint firstItem="Thl-3v-mPB" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="16" id="8jn-O6-nOl"/>
+                            <constraint firstItem="WWT-bT-WoC" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="HzQ-SM-3cS"/>
+                            <constraint firstItem="reo-Da-88c" firstAttribute="leading" secondItem="nRm-k3-uz0" secondAttribute="trailing" constant="20" id="I4w-MI-0hj"/>
+                            <constraint firstItem="WWT-bT-WoC" firstAttribute="leading" secondItem="lBQ-i9-Azc" secondAttribute="trailing" id="L1Y-GH-GNk"/>
+                            <constraint firstAttribute="bottom" secondItem="rxa-qT-JMl" secondAttribute="bottom" constant="20" id="Nlk-tg-LCN"/>
+                            <constraint firstItem="WWT-bT-WoC" firstAttribute="width" secondItem="lBQ-i9-Azc" secondAttribute="width" id="Nn6-EK-btV"/>
+                            <constraint firstItem="LeK-Ng-TsK" firstAttribute="leading" secondItem="JET-5E-o9e" secondAttribute="trailing" constant="20" id="XSu-rP-u9C"/>
+                            <constraint firstItem="lBQ-i9-Azc" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="XgB-6h-BZw"/>
+                            <constraint firstItem="reo-Da-88c" firstAttribute="top" secondItem="LeK-Ng-TsK" secondAttribute="bottom" constant="20" id="Xm6-3C-pKd"/>
+                            <constraint firstItem="meL-Vt-Rxg" firstAttribute="centerY" secondItem="rxa-qT-JMl" secondAttribute="centerY" id="Y5Q-54-fKr"/>
+                            <constraint firstAttribute="bottom" secondItem="reo-Da-88c" secondAttribute="bottom" constant="20" id="Y85-YK-sDa"/>
+                            <constraint firstItem="meL-Vt-Rxg" firstAttribute="leading" secondItem="rxa-qT-JMl" secondAttribute="trailing" constant="20" id="Znu-AN-iiw"/>
+                            <constraint firstAttribute="trailing" secondItem="reo-Da-88c" secondAttribute="trailing" constant="20" id="a6C-QE-ePp"/>
+                            <constraint firstItem="WWT-bT-WoC" firstAttribute="centerY" secondItem="lBQ-i9-Azc" secondAttribute="centerY" id="bQv-Rn-bx9"/>
+                            <constraint firstItem="rxa-qT-JMl" firstAttribute="top" secondItem="Thl-3v-mPB" secondAttribute="bottom" constant="20" id="cpf-PD-fUJ"/>
+                            <constraint firstItem="lBQ-i9-Azc" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="dGo-cw-Qfj"/>
+                            <constraint firstItem="rxa-qT-JMl" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="jne-9z-827"/>
+                            <constraint firstItem="LeK-Ng-TsK" firstAttribute="trailing" secondItem="reo-Da-88c" secondAttribute="trailing" id="lXB-5I-Y3a"/>
+                            <constraint firstItem="JET-5E-o9e" firstAttribute="centerY" secondItem="LeK-Ng-TsK" secondAttribute="centerY" id="w4M-ZU-Pvh"/>
+                            <constraint firstItem="Thl-3v-mPB" firstAttribute="trailing" secondItem="meL-Vt-Rxg" secondAttribute="trailing" constant="4" id="wJM-bL-rTK"/>
+                            <constraint firstAttribute="trailing" secondItem="WWT-bT-WoC" secondAttribute="trailing" id="xj8-Gw-jcE"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="cameraSelectionBtn" destination="Thl-3v-mPB" id="Bdf-gd-YJd"/>
+                        <outlet property="inputFrame" destination="lBQ-i9-Azc" id="m5J-TN-pED"/>
+                        <outlet property="processedFrame" destination="WWT-bT-WoC" id="IQL-dT-4pH"/>
+                        <outlet property="videoPathField" destination="LeK-Ng-TsK" id="9hW-x5-4sI"/>
+                    </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="655"/>
+            <point key="canvasLocation" x="75" y="771"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="placeholder" width="450" height="300"/>
+    </resources>
 </document>
